@@ -11,14 +11,14 @@ const App = (props) => {
         <BrowserRouter >
             <div className = 'app-wrapper' >
                 <Header / >
-                <Navbar / >
+                <Navbar friends={props.state.navbarPage}/ >
                     <div>
-                        <Route path='/profile' render={()=> <Profile />}/>
-                        <Route path='/message' render={()=> <Dialogs info={props.data} message={props.message}/>}/>
+                        <Route path='/profile' render={()=> <Profile message={props.state.messagePage}/>}/>
+                        <Route path='/message' render={()=> <Dialogs info={props.state.profilePage} message={props.state.profilePage} img={props.state.profilePage}/>}/>
                     </div>
             </div> 
         </BrowserRouter>  
-    );
+    )
 }
 
 export default App;

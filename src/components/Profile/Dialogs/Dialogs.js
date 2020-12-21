@@ -4,11 +4,12 @@ import {NavLink} from 'react-router-dom'
 //import {ItemMess} from './DialogsItem';
 
 const Dialogs = (props) => {
+    console.log(props);
+    let item = props.info.people;
+    let mes = props.message.dialogs;
+    
 
-    let item = props.info;
-    let mes = props.message;
-
-    let dialogsPeople = item.map(items => <div><NavLink  to={`/message/${items.id}`}>{items.message}</NavLink></div>)
+    let dialogsPeople = item.map(items => <div><NavLink  to={`/message/${items.id}`}>{items.message}<img className='avatar2' src={items.img}  alt="альтернативный текст"/></NavLink></div>)
 
     let dialogsMessages = mes.map(ItemMess => <div>{ItemMess.message}-{ItemMess.id}</div>)
 

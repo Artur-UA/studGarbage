@@ -2,7 +2,12 @@ import React from 'react';
 import Post from './Post/Post'
 //import Dialogs from '../Message/Dialogs/Dialogs'
 
-const Profile = () => {
+const Profile = (state) => {
+console.log(state);
+  const messages = state.message.message;
+
+   const mess = messages.map(message => <Post name={message.name} like={message.like}/>)
+  
     return (
       <div className='content'>
         <div>
@@ -10,10 +15,9 @@ const Profile = () => {
         </div>
 
         <div className="post">
-            <Post name={"Хелло"} like={10}/>
-            <Post name={"Привет"} like={7}/>
-            <Post/>
 
+
+            {mess}
             <div>
                 <img className='avatar' src="https://chto-takoe-lyubov.net/wp-content/uploads/2019/12/Pyatachok-zagadki.jpg" width="100" height="100" alt="альтернативный текст"/>Halo
             </div>

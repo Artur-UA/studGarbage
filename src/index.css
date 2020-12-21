@@ -21,6 +21,16 @@ code {
   height:70px;
 }
 
+.avatar2{
+  border-radius: 100%;
+  width: 40px;
+  height:40px;
+}
+
 .likeSmall{
   font-size: 14px;
+}
+
+.friends{
+  margin-top: 60px;
 }
