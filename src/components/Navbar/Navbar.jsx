@@ -1,9 +1,11 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
+import Friends from './friends'
 
 const Navbar = (props) => {
 
-    let people = props.friends.map(friend => )
+/*     let people = props.friends.map(friend => ) */
+
     return <nav className='nav'>
         <div>
             {/* <a href='/profile'>Profile</a> */}
@@ -24,7 +26,7 @@ const Navbar = (props) => {
         </div>
         <div className='friends'>
             <strong>Friends</strong>
-
+            <Friends fr={props.data.friends} add={props.info}/>
         </div>
     </nav>
 }

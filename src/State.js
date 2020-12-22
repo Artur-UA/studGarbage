@@ -31,5 +31,14 @@ let state = {
         ]
     }
 }
+export let addPost = (info) => {
+    state.navbarPage.friends.push({
+        id:4, name:info, img:'https://i.movielib.ru/charpic/1580660/l/98a8/Kot_Matroskin.jpg'
+    })
+    console.log(state); 
+    console.log(info); 
+}
+
+
 
 export default state;
