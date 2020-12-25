@@ -26,7 +26,7 @@ const Navbar = (props) => {
         </div>
         <div className='friends'>
             <strong>Friends</strong>
-            <Friends fr={props.data.friends} add={props.info}/>
+            <Friends fr={props.data.friends} add={props.info} newText={props.infoText} textArea={props.data.texts}/>
         </div>
     </nav>
 }
