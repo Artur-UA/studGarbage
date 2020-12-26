@@ -8,7 +8,7 @@ import store from './State'
 
 
 const renderPage = (state) => {
-ReactDOM.render(<App state={state} dispatch={store.dispatch.bind(state)} /* addInfo={store.addPost.bind(store)} text={store.newText.bind(store)} profileText1={store.profileText.bind(store)} *//>, document.getElementById('root'));
+ReactDOM.render(<App state={state} dispatch={store.dispatch.bind(store)} /* addInfo={store.addPost.bind(store)} text={store.newText.bind(store)} profileText1={store.profileText.bind(store)} *//>, document.getElementById('root'));
 }
 
 renderPage(store.getState());

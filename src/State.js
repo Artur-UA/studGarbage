@@ -80,6 +80,21 @@ export default state;
 
  */
 
+export const ADD_POST = 'ADD_POST';
+export const NEW_TEXT = 'NEW_TEXT';
+export const PROFILE_TEXT = 'PROFILE_TEXT';
+export const DIALOG_TEXT = 'DIALOG_TEXT';
+export const DIALOG_TEXT_SEND = 'DIALOG_TEXT_SEND';
+
+export const addPostActionCreator = (text) => ({type:ADD_POST, info:text})
+
+export const newTextActionCreator = (text) => ({type:NEW_TEXT, text:text})
+
+export const profileTextActionCreator = (text) => ({type:PROFILE_TEXT, textInfo:text})
+
+export const dialogTextActionCreator = (info) => ({type : DIALOG_TEXT, infoText: info})
+
+export const dialogTextSendActionCreator = (infoTextSend) => ({type: DIALOG_TEXT_SEND, infoText: infoTextSend})
 
 
 let store = {
@@ -99,7 +114,8 @@ let store = {
                 {id:3, message:'По'},
                 {id:4, message:'П'}
             ],
-            textTest:''
+            textTest:'Привет',
+            textBeforePost: 'g'
         },
         messagePage: {
             message:[
@@ -115,7 +131,7 @@ let store = {
                 {id:2, name:"Sharik", img:'https://demiart.ru/forum/uploads19/post-82312-1489784448.jpg'},
                 {id:3, name:"Pechkin", img:'https://cs8.pikabu.ru/post_img/2016/01/20/9/1453305573168164067.jpg'},
             ],
-            texts: ''
+            texts: 'Хай'
         }
     },
     _callSubscriber() {
@@ -125,24 +141,36 @@ let store = {
         return this._state
     },
     dispatch(action) {
-        if(action.type ==='ADD_POST'){
+        if(action.type === ADD_POST){
             this._state.navbarPage.friends.push({
                 id:4, name:action.info, img:'https://i.movielib.ru/charpic/1580660/l/98a8/Kot_Matroskin.jpg'
             })
             this._callSubscriber(this._state);
-        } else if (action.type ==='NEW_TEXT'){
-            debugger;
+        
+        } else if (action.type === NEW_TEXT){
             this._state.navbarPage.texts = action.text;
-            this._callSubscriber(this._state);
+            this._callSubscriber(this._state); 
             console.log(this._state);
-        } else if(action.type ==='PROFILE_TEXT'){
+        
+        } else if(action.type === PROFILE_TEXT){
             this._state.profilePage.textTest = action.textInfo;
             this._state.messagePage.message.push({id:5, name:action.textInfo, like:69})
             console.log(this._state);
             this._callSubscriber(this._state);
+        
+        } else if (action.type === DIALOG_TEXT) {
+            this._state.profilePage.textBeforePost = action.infoText;
+            this._callSubscriber(this._state);
+            console.log(this._state);
+        
+        } else if (action.type === DIALOG_TEXT_SEND) {
+            this._state.profilePage.dialogs.push({id : store._state.profilePage.dialogs.length +1, message : action.infoText})
+            this._state.profilePage.textBeforePost = ''; 
+            this._callSubscriber(this._state);
         }
     },
 
+    
 /* 
     addPost(info) {
         this._state.navbarPage.friends.push({
@@ -167,3 +195,4 @@ let store = {
 }
 
 export default store;
+

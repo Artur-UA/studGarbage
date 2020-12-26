@@ -2,6 +2,7 @@ import React from 'react';
 import './Profice.css'
 import {NavLink} from 'react-router-dom'
 //import {ItemMess} from './DialogsItem';
+import {dialogTextActionCreator, dialogTextSendActionCreator} from '../../../State'
 
 const Dialogs = (props) => {
     console.log(props);
@@ -12,6 +13,18 @@ const Dialogs = (props) => {
     let dialogsPeople = item.map(items => <div><NavLink  to={`/message/${items.id}`}>{items.message}<img className='avatar2' src={items.img}  alt="альтернативный текст"/></NavLink></div>)
 
     let dialogsMessages = mes.map(ItemMess => <div>{ItemMess.message}-{ItemMess.id}</div>)
+
+    const refArea = React.createRef();
+
+    const changedMessage = () => {
+        let valueMessage = refArea.current.value;
+        props.dispatch(dialogTextActionCreator(valueMessage))
+    }
+
+    const changedRender = () => {
+        let valueMessage = refArea.current.value;
+        props.dispatch(dialogTextSendActionCreator(valueMessage))
+    }
 
     return (
         <div className="dialogs">
@@ -48,6 +61,12 @@ const Dialogs = (props) => {
                 {
                     dialogsMessages
                 }
+                
+                <textarea ref={refArea}
+                        onChange={changedMessage}
+                        value={props.info.textBeforePost}
+                        />
+                <button onClick={changedRender}>Click</button>
 
               {/*   {
                     ItemMess.map(ItemMess => {

@@ -1,9 +1,10 @@
 import React from 'react';
 import Post from './Post/Post'
 //import Dialogs from '../Message/Dialogs/Dialogs'
+import {profileTextActionCreator} from '../../State'
 
 const Profile = (state) => {
-    const messages = state.message.message;
+    const messages = state.message.messagePage.message;
 
     const mess = messages.map(message => <Post name={message.name} like={message.like} />)
 
@@ -13,7 +14,8 @@ const Profile = (state) => {
     let textSend = () => {
         let text = newElement.current.value
         /* state.profileText2(text) */
-        state.dispatch({type:'NEW_TEXT', text:text})
+        /* state.dispatch({type:'PROFILE_TEXT', textInfo:text}) */
+        state.dispatch(profileTextActionCreator(text)) 
     }
 
     
@@ -28,7 +30,9 @@ const Profile = (state) => {
                 
                 <div>
                     <textarea ref={newElement} 
+                            value={state.message.profilePage.textTest}
                             onChange={textSend}
+                            
                     />
                     <button onClick={textSend}>Жми</button>
                 </div>
