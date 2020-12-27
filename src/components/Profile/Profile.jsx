@@ -1,10 +1,10 @@
 import React from 'react';
 import Post from './Post/Post'
 //import Dialogs from '../Message/Dialogs/Dialogs'
-import {profileTextActionCreator} from '../../State'
+import {profileTextActionCreator} from '../Redux/profileReducer'
 
 const Profile = (state) => {
-    const messages = state.message.messagePage.message;
+    const messages = state.message.profilePage.message;
 
     const mess = messages.map(message => <Post name={message.name} like={message.like} />)
 
@@ -30,7 +30,7 @@ const Profile = (state) => {
                 
                 <div>
                     <textarea ref={newElement} 
-                            value={state.message.profilePage.textTest}
+                            value={state.message.profilePage.textBeforePost}
                             onChange={textSend}
                             
                     />

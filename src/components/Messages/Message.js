@@ -2,12 +2,11 @@ import React from 'react';
 import './Profice.css'
 import {NavLink} from 'react-router-dom'
 //import {ItemMess} from './DialogsItem';
-import {dialogTextActionCreator, dialogTextSendActionCreator} from '../../../State'
+import {dialogTextActionCreator, dialogTextSendActionCreator} from '../Redux/messageReducer'
 
-const Dialogs = (props) => {
-    console.log(props);
-    let item = props.info.people;
-    let mes = props.message.dialogs;
+const Messages = (props) => {
+    let item = props.info.messagePage.people;
+    let mes = props.info.messagePage.dialogs;
     
 
     let dialogsPeople = item.map(items => <div><NavLink  to={`/message/${items.id}`}>{items.message}<img className='avatar2' src={items.img}  alt="альтернативный текст"/></NavLink></div>)
@@ -16,14 +15,15 @@ const Dialogs = (props) => {
 
     const refArea = React.createRef();
 
-    const changedMessage = () => {
-        let valueMessage = refArea.current.value;
+    const changedMessage = (e) => {
+/*         let valueMessage = refArea.current.value; */
+        let valueMessage = e.target.value;
+        console.log(valueMessage);
         props.dispatch(dialogTextActionCreator(valueMessage))
     }
 
     const changedRender = () => {
-        let valueMessage = refArea.current.value;
-        props.dispatch(dialogTextSendActionCreator(valueMessage))
+        props.dispatch(dialogTextSendActionCreator())
     }
 
     return (
@@ -64,7 +64,7 @@ const Dialogs = (props) => {
                 
                 <textarea ref={refArea}
                         onChange={changedMessage}
-                        value={props.info.textBeforePost}
+                        value={props.info.messagePage.textTest}
                         />
                 <button onClick={changedRender}>Click</button>
 
@@ -85,4 +85,4 @@ const Dialogs = (props) => {
     )
 }
 
-export default Dialogs;
+export default Messages;

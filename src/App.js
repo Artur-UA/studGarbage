@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
-import Dialogs from './components/Profile/Dialogs/Dialogs'
+import Messages from './components/Messages/Message'
 import {BrowserRouter, Route} from 'react-router-dom'
 
 
@@ -21,9 +21,9 @@ const App = (props) => {
                                                                     dispatch={props.dispatch}
                                                                     /* profileText2={props.profileText1} *//>}/>
 
-                        <Route path='/message' render={()=> <Dialogs info={props.state.profilePage} 
-                                                                    message={props.state.profilePage} 
-                                                                    img={props.state.profilePage}
+                        <Route path='/message' render={()=> <Messages info={props.state} 
+                                                                    /*  message={props.state.profilePage} 
+                                                                    img={props.state.profilePage}  */
                                                                     dispatch={props.dispatch}/>}/>
                     </div>
             </div> 

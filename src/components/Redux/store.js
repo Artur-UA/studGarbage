@@ -80,26 +80,30 @@ export default state;
 
  */
 
-export const ADD_POST = 'ADD_POST';
-export const NEW_TEXT = 'NEW_TEXT';
-export const PROFILE_TEXT = 'PROFILE_TEXT';
-export const DIALOG_TEXT = 'DIALOG_TEXT';
-export const DIALOG_TEXT_SEND = 'DIALOG_TEXT_SEND';
+import navbarReducer from './navbarReducer'
+import profileReducer from './profileReducer'
+import messageReducer from './messageReducer'
 
-export const addPostActionCreator = (text) => ({type:ADD_POST, info:text})
+/* export const ADD_POST = 'ADD_POST';
+export const NEW_TEXT = 'NEW_TEXT'; 
+export const PROFILE_TEXT = 'PROFILE_TEXT';*
+export const DIALOG_TEXT = 'DIALOG_TEXT';
+export const DIALOG_TEXT_SEND = 'DIALOG_TEXT_SEND';/
+
+/* export const addPostActionCreator = (text) => ({type:ADD_POST, info:text})
 
 export const newTextActionCreator = (text) => ({type:NEW_TEXT, text:text})
 
-export const profileTextActionCreator = (text) => ({type:PROFILE_TEXT, textInfo:text})
+export const profileTextActionCreator = (text) => ({type:PROFILE_TEXT, textInfo:text}) 
 
 export const dialogTextActionCreator = (info) => ({type : DIALOG_TEXT, infoText: info})
 
-export const dialogTextSendActionCreator = (infoTextSend) => ({type: DIALOG_TEXT_SEND, infoText: infoTextSend})
+export const dialogTextSendActionCreator = (infoTextSend) => ({type: DIALOG_TEXT_SEND, infoText: infoTextSend})*/
 
 
 let store = {
     _state: {
-        profilePage:{
+        messagePage:{
             people: [
                 {id:1, message:'Привет', img:"https://i.movielib.ru/charpic/1580660/l/98a8/Kot_Matroskin.jpg"},
                 {id:2, message:'Приве', img:"https://cs8.pikabu.ru/post_img/2016/01/20/9/1453305573168164067.jpg"},
@@ -114,16 +118,16 @@ let store = {
                 {id:3, message:'По'},
                 {id:4, message:'П'}
             ],
-            textTest:'Привет',
-            textBeforePost: 'g'
+            textTest:'Привет'
         },
-        messagePage: {
+        profilePage: {
             message:[
             {id:1, name:'Хелло', like:3},
             {id:2, name:'Прив', like:22},
             {id:3, name:'Че', like:0},
             {id:4, name:'Хало', like:9}
-            ]
+            ],
+            textBeforePost: 'g'
         },
         navbarPage: {
             friends: [
@@ -141,7 +145,16 @@ let store = {
         return this._state
     },
     dispatch(action) {
-        if(action.type === ADD_POST){
+
+        navbarReducer(store._state.navbarPage, action)
+        profileReducer(store._state.profilePage, action)
+        messageReducer(store._state.messagePage, action)
+
+
+        this._callSubscriber(this._state);
+        console.log(this._state);
+    },
+    /*     if(action.type === ADD_POST){
             this._state.navbarPage.friends.push({
                 id:4, name:action.info, img:'https://i.movielib.ru/charpic/1580660/l/98a8/Kot_Matroskin.jpg'
             })
@@ -168,8 +181,10 @@ let store = {
             this._state.profilePage.textBeforePost = ''; 
             this._callSubscriber(this._state);
         }
-    },
-
+    }, */
+    restartingAPP(func) {
+        this._callSubscriber = func;
+    }
     
 /* 
     addPost(info) {
@@ -189,9 +204,7 @@ let store = {
         console.log(this._state);
         this._callSubscriber(this._state);
     }, */
-    restartingAPP(func) {
-        this._callSubscriber = func;
-    }
+    
 }
 
 export default store;
