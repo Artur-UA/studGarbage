@@ -1,6 +1,17 @@
 export const PROFILE_TEXT = 'PROFILE_TEXT';
 
-const profileReducer = (state, action) => {
+const initialState = {
+    message:[
+    {id:1, name:'Хелло', like:3},
+    {id:2, name:'Прив', like:22},
+    {id:3, name:'Че', like:0},
+    {id:4, name:'Хало', like:9}
+    ],
+    textBeforePost: 'g'
+}
+
+
+const profileReducer = (state = initialState, action) => {
     switch(action.type) {
         case PROFILE_TEXT:
             state.textBeforePost = action.textInfo;

@@ -1,7 +1,16 @@
 export const ADD_POST = 'ADD_POST';
 export const NEW_TEXT = 'NEW_TEXT';
 
-const navbarReducer = (state, action) => {
+const initialState = {
+    friends: [
+        {id:1, name:"Matroskin", img:'https://i.movielib.ru/charpic/1580660/l/98a8/Kot_Matroskin.jpg'},
+        {id:2, name:"Sharik", img:'https://demiart.ru/forum/uploads19/post-82312-1489784448.jpg'},
+        {id:3, name:"Pechkin", img:'https://cs8.pikabu.ru/post_img/2016/01/20/9/1453305573168164067.jpg'},
+    ],
+    texts: 'Хай'
+}
+
+const navbarReducer = (state = initialState, action) => {
     switch(action.type) {
         case ADD_POST:
             state.friends.push({

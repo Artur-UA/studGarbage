@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import store from './components/Redux/store' 
+import store from './components/Redux/storeRedux' 
 //import {addPost, newText,profileText, restartingAPP} from './State'
 
 
@@ -13,4 +13,7 @@ ReactDOM.render(<App state={state} dispatch={store.dispatch.bind(store)} /* addI
 
 renderPage(store.getState());
 
-store.restartingAPP(renderPage);
+store.subscribe(() => {
+    let state = store.getState()
+    renderPage(state)
+});

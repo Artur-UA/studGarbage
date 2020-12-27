@@ -182,7 +182,7 @@ let store = {
             this._callSubscriber(this._state);
         }
     }, */
-    restartingAPP(func) {
+    subscribe(func) {
         this._callSubscriber = func;
     }
     
