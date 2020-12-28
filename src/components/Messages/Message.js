@@ -2,28 +2,28 @@ import React from 'react';
 import './Profice.css'
 import {NavLink} from 'react-router-dom'
 //import {ItemMess} from './DialogsItem';
-import {dialogTextActionCreator, dialogTextSendActionCreator} from '../Redux/messageReducer'
+//import {dialogTextActionCreator, dialogTextSendActionCreator} from '../Redux/messageReducer'
 
 const Messages = (props) => {
-    let item = props.info.messagePage.people;
-    let mes = props.info.messagePage.dialogs;
+    /* let item = props.info.messagePage.people;
+    let mes = props.info.messagePage.dialogs; */
     
 
-    let dialogsPeople = item.map(items => <div><NavLink  to={`/message/${items.id}`}>{items.message}<img className='avatar2' src={items.img}  alt="альтернативный текст"/></NavLink></div>)
+    let dialogsPeople = props.item.map(items => <div><NavLink  to={`/message/${items.id}`}>{items.message}<img className='avatar2' src={items.img}  alt="альтернативный текст"/></NavLink></div>)
 
-    let dialogsMessages = mes.map(ItemMess => <div>{ItemMess.message}-{ItemMess.id}</div>)
+    let dialogsMessages = props.mes.map(ItemMess => <div>{ItemMess.message}-{ItemMess.id}</div>)
 
     const refArea = React.createRef();
 
     const changedMessage = (e) => {
 /*         let valueMessage = refArea.current.value; */
         let valueMessage = e.target.value;
-        console.log(valueMessage);
-        props.dispatch(dialogTextActionCreator(valueMessage))
+        /* props.dispatch(dialogTextActionCreator(valueMessage)) */
+        props.dialogTextActionCreator(valueMessage)
     }
 
     const changedRender = () => {
-        props.dispatch(dialogTextSendActionCreator())
+        props.dialogTextSendActionCreator()
     }
 
     return (
@@ -64,7 +64,8 @@ const Messages = (props) => {
                 
                 <textarea ref={refArea}
                         onChange={changedMessage}
-                        value={props.info.messagePage.textTest}
+                        /* value={props.info.messagePage.textTest} */
+                        value={props.value}
                         />
                 <button onClick={changedRender}>Click</button>
 

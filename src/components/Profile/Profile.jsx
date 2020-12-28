@@ -1,12 +1,12 @@
 import React from 'react';
 import Post from './Post/Post'
 //import Dialogs from '../Message/Dialogs/Dialogs'
-import {profileTextActionCreator} from '../Redux/profileReducer'
+//import {profileTextActionCreator} from '../Redux/profileReducer'
 
 const Profile = (state) => {
-    const messages = state.message.profilePage.message;
+    /* const messages = state.message.profilePage.message; */
 
-    const mess = messages.map(message => <Post name={message.name} like={message.like} />)
+    const mess = state.messages.map(message => <Post name={message.name} like={message.like} />)
 
     let newElement = React.createRef();
     
@@ -14,11 +14,10 @@ const Profile = (state) => {
     let textSend = () => {
         let text = newElement.current.value
         /* state.profileText2(text) */
-        /* state.dispatch({type:'PROFILE_TEXT', textInfo:text}) */
-        state.dispatch(profileTextActionCreator(text)) 
+        /* state.dispatch({type:'PROFILE_TEXT', textInfo:text}) 
+        state.dispatch(profileTextActionCreator(text)) */
+        state.profileTextActionCreator(text) 
     }
-
-    
 
     return (
         <div className='content'>
@@ -30,7 +29,8 @@ const Profile = (state) => {
                 
                 <div>
                     <textarea ref={newElement} 
-                            value={state.message.profilePage.textBeforePost}
+                            /* value={state.message.profilePage.textBeforePost} */
+                            value={state.messagesValue}
                             onChange={textSend}
                             
                     />

@@ -2,32 +2,34 @@ import React from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import Profile from './components/Profile/Profile';
-import Messages from './components/Messages/Message'
-import {BrowserRouter, Route} from 'react-router-dom'
-
+//import Profile from './components/Profile/Profile';
+//import Messages from './components/Messages/Message'
+import {Route} from 'react-router-dom'
+import MessagesContainer from './components/Messages/MessageContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
 
 const App = (props) => {
     return ( 
-        <BrowserRouter >
+
             <div className = 'app-wrapper' >
                 <Header / >
-                <Navbar data={props.state.navbarPage} 
-                        dispatch={props.dispatch}
+                <Navbar /* data={props.state} 
+                        dispatch={props.dispatch} */
                         /* info={props.addInfo} 
                         infoText={props.text} */ />
                     <div>
-                        <Route path='/profile' render={()=> <Profile message={props.state}
+                        <Route path='/profile' render={()=> <ProfileContainer /* state={props.state} dispatch={props.dispatch} *//>
+                                                            /* <Profile message={props.state}
                                                                     dispatch={props.dispatch}
-                                                                    /* profileText2={props.profileText1} *//>}/>
+                                                                    profileText2={props.profileText1}/> */}/>
 
-                        <Route path='/message' render={()=> <Messages info={props.state} 
-                                                                    /*  message={props.state.profilePage} 
-                                                                    img={props.state.profilePage}  */
-                                                                    dispatch={props.dispatch}/>}/>
+                        <Route path='/message' render={()=> <MessagesContainer /* state={props.state} dispatch={props.dispatch} *//>
+                                                            /*<Messages info={props.state} 
+                                                                      message={props.state.profilePage} 
+                                                                    img={props.state.profilePage}  
+                                                                    dispatch={props.dispatch}/>*/}/>
                     </div>
             </div> 
-        </BrowserRouter>  
     )
 }
 
