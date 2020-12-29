@@ -8,9 +8,8 @@ import {Route} from 'react-router-dom'
 import MessagesContainer from './components/Messages/MessageContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 
-const App = (props) => {
+const App = () => {
     return ( 
-
             <div className = 'app-wrapper' >
                 <Header / >
                 <Navbar /* data={props.state} 

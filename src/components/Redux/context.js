@@ -1,4 +1,4 @@
-import React from 'react'
+/* import React from 'react'
 
 const MyContext = React.createContext(null);
 
@@ -10,4 +10,4 @@ export const Provider = (props) => {   //инкапсуляция <MyContext.Pro
 
     )
 }
-export default MyContext;
+export default MyContext; */

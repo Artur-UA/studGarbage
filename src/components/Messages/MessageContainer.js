@@ -1,9 +1,10 @@
-import React from 'react';
-import MyContext from '../Redux/context';
+//import React from 'react';
+//import MyContext from '../Redux/context';
 import { dialogTextActionCreator, dialogTextSendActionCreator } from '../Redux/messageReducer';
 import Messages from './Message'
+import {connect} from 'react-redux'
 
-const MessagesContainer = () => {
+/* const MessagesContainer = () => { */
 
 /*     let text = props.state.messagePage.textTest;
     let item = props.state.messagePage.people;
@@ -17,7 +18,7 @@ const MessagesContainer = () => {
         props.dispatch(dialogTextSendActionCreator())
     } */
 
-    return (
+/*     return (
         <MyContext.Consumer>
             {store => {
                 const changedMessage = (text) => {
@@ -33,6 +34,28 @@ const MessagesContainer = () => {
             }}
         </MyContext.Consumer>
     )
+} */
+
+let mapStateToProps = (state) => {
+    return{
+        value: state.messagePage.textTest,
+        item: state.messagePage.people,
+        mes:state.messagePage.dialogs
+    }
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        dialogTextActionCreator: (text) => {
+            let action = dialogTextActionCreator(text)
+            dispatch(action)
+        },
+        dialogTextSendActionCreator: () => {
+            dispatch(dialogTextSendActionCreator())
+        }
+    }
+}
+
+const MessagesContainer = connect(mapStateToProps, mapDispatchToProps) (Messages);
 
 export default MessagesContainer;

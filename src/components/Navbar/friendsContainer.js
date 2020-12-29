@@ -1,10 +1,11 @@
-import React from 'react';
-import MyContext from '../Redux/context';
+//import React from 'react';
+//import MyContext from '../Redux/context';
 import {addPostActionCreator, newTextActionCreator} from '../Redux/navbarReducer'
 import Friends from './friends';
+import {connect} from 'react-redux'
 
-const FriendsContainer = (props) => {
-/*     let data = props.data.navbarPage.friends;
+/* const FriendsContainer = (props) => {
+ *//*     let data = props.data.navbarPage.friends;
     let dataValue = props.data.navbarPage.texts;
 
     let addMessage = () => {
@@ -15,7 +16,7 @@ const FriendsContainer = (props) => {
         props.dispatch(newTextActionCreator(text))
     }  */
 
-    return (
+   /*  return (
         <MyContext.Consumer>
             { store => {
                 let addMessage = () => {
@@ -35,5 +36,28 @@ const FriendsContainer = (props) => {
         </MyContext.Consumer>
     )
 }
+
+export default FriendsContainer; */
+
+
+let mapStateToProps = (state) => {
+    console.log(state)
+    return {
+        data: state.navbarPage.friends,
+        dataValue: state.navbarPage.texts
+    }
+}
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        newTextActionCreator: (text) => {
+            let action = newTextActionCreator(text);
+            dispatch(action)
+        },
+        addPostActionCreator: () => dispatch(addPostActionCreator())
+    }
+}
+
+const FriendsContainer = connect(mapStateToProps, mapDispatchToProps) (Friends);
 
 export default FriendsContainer;
